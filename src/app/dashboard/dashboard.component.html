@@ -25,7 +25,7 @@
           <b style="cursor: pointer; font-size: 4vh;" (click)="openParent()"><i class="fa fa-folder-o" aria-hidden="true"></i> ... </b>
         
           <div *ngFor="let item of remoService.itemData">
-            <p (click)="openFolder(item._id)" style="cursor: pointer; font-size: 4vh;"><i class="fa fa-folder-open" aria-hidden="true"></i> {{item.folderName}}</p>
+            <p (click)="openFolder(item._id, item.folderName)" style="cursor: pointer; font-size: 4vh;"><i class="fa fa-folder-open" aria-hidden="true"></i> {{item.folderName}}</p>
           </div>
 
 

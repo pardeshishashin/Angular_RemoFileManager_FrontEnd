@@ -15,6 +15,7 @@ import { RemoService } from '../shared/remo.service';
 export class DashboardComponent implements OnInit {
   imagePreview: string;
   saveId: any;
+  parent: Window;
 
     openModal(template: TemplateRef<any>) {
         this.modalRef = this.modalService.show(template);
@@ -79,20 +80,19 @@ export class DashboardComponent implements OnInit {
     reader.readAsDataURL(file);
   }
   openParent() {
-    console.log("okay");
     console.log(this.saveId);
     
-    
-    this.remoService.getShowFolder();
+    this.remoService.getShow(this.saveId);
   }
   onAddFolder() {
   
-    this.remoService.addFolder(this.form.value, this.saveId);
-    this.modalRef.hide()
+    this.remoService.addFolder(this.form.value, this.saveId, this.parent);
+    this.modalRef.hide();
     
   }
-  openFolder(id) {
+  openFolder(id, parent) {
     this.saveId = id;
+    this.parent = parent
     this.remoService.subFolder(id);
   }
 }

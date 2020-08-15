@@ -8,10 +8,11 @@ export class RemoService {
     itemData: any;
     constructor(private http: HttpClient) {}
 
-addFolder(data, id) {
+addFolder(data, id, parent) {
             const folder = {
                 folder: data.folder,
-                id
+                id,
+                parent
             }
         
         console.log(folder);
@@ -30,7 +31,17 @@ getShowFolder() {
         
     })
 }
+getShow(id) {
+    this.http.get<any>('http://localhost:3000/show/' +id)
+    .subscribe(data =>{
+        this.itemData = data;
+        console.log(this.itemData);
+        
+    });
+}
 subFolder(id) {
+    console.log(id);
+    
     this.http.get<any>('http://localhost:3000/subFolder/' +id)
     .subscribe(result =>{
         this.itemData = result;
