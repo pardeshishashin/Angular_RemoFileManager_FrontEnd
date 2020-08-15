@@ -1,0 +1,15 @@
+.dashboard {
+    margin-top: 5vh;
+    padding: 1vh;
+    border: 1px solid black;
+}
+.dashboard1 {
+    height: 80vh;
+    border: 1px solid black;
+    
+}
+.window {
+    margin-left: 5vh;
+    margin-right: 5vh;
+}
+

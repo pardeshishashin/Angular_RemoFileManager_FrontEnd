@@ -1,0 +1,55 @@
+<div class="window">
+    <div class="row dashboard">
+        <b style="cursor: pointer;" (click)="openModal(template)"><i class="fa fa-folder" aria-hidden="true"></i> New Directory </b>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+ </div>
+    <div class="row dashboard1">  
+    
+              <div style="border: 1px solid black; width: 20%;height: 80vh;padding-left: 1%; display: block;">
+                <ngx-treeview [config]="config" [items]="items" (filterChange)="onFilterChange($event)" (selectedChange)="values = $event">
+                </ngx-treeview>
+              </div>
+      
+      
+        <div style="padding-left: 5vh;">
+          <div class="container">
+          <span style="text-align-last: left;">
+            <b style="cursor: pointer;" (click)="openModal(template)"><i class="fa fa-folder" aria-hidden="true"></i>Add New Directory </b>
+          </span>
+          <b style="cursor: pointer; padding-left: 5vh;" (click)="filePicker.click()"><i class="fa fa-upload" aria-hidden="true"></i> Upload File</b>
+          <input type="file"  #filePicker style="visibility: hidden; width: 1%;" class="form-control" (change)="onImagePicked($event)">
+          </div>
+          <b style="cursor: pointer; font-size: 4vh;" (click)="openParent()"><i class="fa fa-folder-o" aria-hidden="true"></i> ... </b>
+        
+          <div *ngFor="let item of remoService.itemData">
+            <p (click)="openFolder(item._id)" style="cursor: pointer; font-size: 4vh;"><i class="fa fa-folder-open" aria-hidden="true"></i> {{item.folderName}}</p>
+          </div>
+
+
+        </div>
+    </div>
+</div>
+ 
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add New Directory</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form" (submit)="onAddFolder()">
+    <input type="text" style="width: 100%;" formControlName="folder" placeholder="Create Folder" name="folder">
+    <br>
+    <br>
+    <button type="submit" class="btn btn-success">Create</button>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <button class="btn btn-danger" (click)="modalRef.hide()">Cancel</button>
+  </form>
+      </div>
+</ng-template>
